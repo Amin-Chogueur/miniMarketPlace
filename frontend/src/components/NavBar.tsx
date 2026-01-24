@@ -12,14 +12,17 @@ function Navbar() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="navbar bg-base-300">
-      <div className="max-w-7xl mx-auto w-full px-4 flex justify-between items-center">
+    <div className="navbar bg-base-300 sticky top-0 z-50">
+      <div className="  max-w-7xl mx-auto w-full px-2 flex justify-between items-center">
         {/* LOGO - LEFT SIDE */}
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost gap-2">
             <ShoppingBagIcon className="size-5 text-primary" />
-            <span className="text-lg font-bold font-mono  tracking-wider">
+            <span className="hidden md:inline text-lg font-bold font-mono  tracking-wider">
               Mini_Market_Place
+            </span>
+            <span className="inline md:hidden text-lg font-bold font-mono  tracking-wider">
+              M_M_P
             </span>
           </Link>
         </div>
