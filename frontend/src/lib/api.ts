@@ -1,4 +1,7 @@
-import type { productType } from "../types/productType";
+import type {
+  ProductType,
+  ProductWithRelationsType,
+} from "../types/productType";
 import type { UserType } from "../types/userType";
 import api from "./axios";
 
@@ -9,10 +12,10 @@ export const syncUser = async (userData: UserType) => {
 };
 
 // Products API
-export const getAllProducts = async () => {
+export async function getAllProducts(): Promise<ProductWithRelationsType[]> {
   const { data } = await api.get("/products");
   return data;
-};
+}
 
 export const getProductById = async (id: string) => {
   const { data } = await api.get(`/products/${id}`);
@@ -24,7 +27,7 @@ export const getMyProducts = async () => {
   return data;
 };
 
-export const createProduct = async (productData: productType) => {
+export const createProduct = async (productData: ProductType) => {
   const { data } = await api.post("/products", productData);
   return data;
 };
@@ -34,7 +37,7 @@ export const updateProduct = async ({
   ...productData
 }: {
   id: string;
-  productData: productType;
+  productData: ProductType;
 }) => {
   const { data } = await api.put(`/products/${id}`, productData);
   return data;

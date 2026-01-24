@@ -1,4 +1,4 @@
-export type CommenType = {
+export type CommentType = {
   id: string;
   userId: string;
   productId: string;
