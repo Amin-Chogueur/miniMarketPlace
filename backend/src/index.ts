@@ -6,7 +6,7 @@ import userRouter from "./routes/userRoute.ts";
 import productRouter from "./routes/productRoute.ts";
 import commentRouter from "./routes/commentRoute.ts";
 const app = express();
-app.use(cors({ origin: ENV.FRONTEND_URL }));
+app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
