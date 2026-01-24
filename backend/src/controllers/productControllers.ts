@@ -79,7 +79,8 @@ export const updateProduct = async (req: Request, res: Response) => {
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const { id } = req.params;
-    const { title, description, imageUrl } = req.body;
+    const { productData } = req.body;
+    const { title, description, imageUrl } = productData;
 
     // Check if product exists and belongs to user
     const existingProduct = await queries.getProductById(id as string);
