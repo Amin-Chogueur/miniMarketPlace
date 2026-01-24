@@ -23,7 +23,7 @@ export const getProductById = async (id: string) => {
 };
 
 export const getMyProducts = async () => {
-  const { data } = await api.get("/products/my");
+  const { data } = await api.get("/products/myProducts");
   return data;
 };
 
