@@ -6,7 +6,7 @@ import {
   getMyProducts,
   getProductById,
   updateProduct,
-} from "../controllers/productControllers.ts";
+} from "../controllers/productControllers.js";
 import { requireAuth } from "@clerk/express";
 
 const productRouter = Router();

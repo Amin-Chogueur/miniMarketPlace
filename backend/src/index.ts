@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
-import { ENV } from "./config/env.ts";
+import { ENV } from "./config/env.js";
 import { clerkMiddleware } from "@clerk/express";
-import userRouter from "./routes/userRoute.ts";
-import productRouter from "./routes/productRoute.ts";
-import commentRouter from "./routes/commentRoute.ts";
+import userRouter from "./routes/userRoute.js";
+import productRouter from "./routes/productRoute.js";
+import commentRouter from "./routes/commentRoute.js";
 const app = express();
 app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true }));
 app.use(express.json());
