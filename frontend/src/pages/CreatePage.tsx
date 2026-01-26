@@ -7,23 +7,30 @@ import {
   ImageIcon,
   SparklesIcon,
   TypeIcon,
+  UserSearch,
 } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createProduct } from "../lib/api";
 
 function CreatePage() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const createProductMutation = useMutation({ mutationFn: createProduct });
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     imageUrl: "",
+    userPhone: "",
   });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     createProductMutation.mutate(formData, {
-      onSuccess: () => navigate("/"),
+      onSuccess: () => {
+        navigate("/");
+        queryClient.invalidateQueries({ queryKey: ["products"] });
+        queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      },
     });
   };
 
@@ -96,7 +103,19 @@ function CreatePage() {
                 />
               </div>
             </div>
-
+            {/* PHONE INPUT */}
+            <label className="input input-bordered flex items-center gap-2 bg-base-200">
+              <UserSearch className="size-4 text-base-content/50" />
+              <input
+                type="text"
+                placeholder="Your Contact"
+                className="grow"
+                value={formData.userPhone}
+                onChange={(e) =>
+                  setFormData({ ...formData, userPhone: e.target.value })
+                }
+              />
+            </label>
             {createProductMutation.isError && (
               <div role="alert" className="alert alert-error alert-sm">
                 <span>Failed to create. Try again.</span>

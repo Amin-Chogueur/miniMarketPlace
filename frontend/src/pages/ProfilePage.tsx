@@ -19,6 +19,7 @@ const ProfilePage = () => {
   const { data: products, isLoading } = useQuery<ProductType[]>({
     queryKey: ["myProducts"],
     queryFn: getMyProducts,
+    staleTime: 1000 * 60,
   });
   const deleteProductMutation = useMutation({
     mutationFn: deleteProduct,
@@ -32,7 +33,7 @@ const ProfilePage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-
+  console.log("myproducts", products);
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -82,6 +83,9 @@ const ProfilePage = () => {
                 <h2 className="card-title text-base">{product.title}</h2>
                 <p className="text-sm text-base-content/60 line-clamp-1">
                   {product.description}
+                </p>
+                <p className="text-sm text-base-content/70 line-clamp-2 underline">
+                  {product.userPhone}
                 </p>
                 <div className="card-actions justify-end mt-2">
                   <button

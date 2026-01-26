@@ -49,7 +49,7 @@ export const createProduct = async (req: Request, res: Response) => {
     const { userId } = getAuth(req);
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
-    const { title, description, imageUrl } = req.body;
+    const { title, description, imageUrl, userPhone } = req.body;
 
     if (!title || !description || !imageUrl) {
       res
@@ -63,6 +63,7 @@ export const createProduct = async (req: Request, res: Response) => {
       description,
       imageUrl,
       userId,
+      userPhone,
     });
 
     res.status(201).json(product);
@@ -80,7 +81,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
     const { id } = req.params;
     const { productData } = req.body;
-    const { title, description, imageUrl } = productData;
+    const { title, description, imageUrl, userPhone } = productData;
 
     // Check if product exists and belongs to user
     const existingProduct = await queries.getProductById(id as string);
@@ -98,6 +99,7 @@ export const updateProduct = async (req: Request, res: Response) => {
       title,
       description,
       imageUrl,
+      userPhone,
     });
 
     res.status(200).json(product);

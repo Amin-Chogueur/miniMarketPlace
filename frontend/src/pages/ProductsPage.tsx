@@ -31,6 +31,7 @@ function ProductPage() {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 
@@ -137,6 +138,9 @@ function ProductPage() {
                   <div>
                     <p className="font-semibold">{product.user.name}</p>
                     <p className="text-xs text-base-content/50">Creator</p>
+                    <p className="text-sm text-base-content/70 line-clamp-2 underline">
+                      {product.userPhone}
+                    </p>
                   </div>
                 </div>
               </>

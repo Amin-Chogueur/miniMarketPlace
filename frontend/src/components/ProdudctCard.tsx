@@ -27,6 +27,9 @@ const ProductCard = ({ product }: { product: ProductWithRelationsType }) => {
         <p className="text-sm text-base-content/70 line-clamp-2">
           {product.description}
         </p>
+        <p className="text-sm text-base-content/70 line-clamp-2 underline">
+          {product.userPhone}
+        </p>
 
         <div className="divider my-1"></div>
 

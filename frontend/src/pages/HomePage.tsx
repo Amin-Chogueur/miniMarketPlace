@@ -13,7 +13,11 @@ function HomePage() {
     data: products,
     isLoading,
     error,
-  } = useQuery({ queryKey: ["products"], queryFn: getAllProducts });
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllProducts,
+    staleTime: 1000 * 60,
+  });
 
   if (isLoading) return <LoadingSpinner />;
 

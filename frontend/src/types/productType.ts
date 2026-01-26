@@ -7,6 +7,7 @@ export type ProductType = {
   title: string;
   description: string;
   imageUrl: string;
+  userPhone?: string | undefined;
   createdAt?: Date;
   updatedAt?: Date;
 };

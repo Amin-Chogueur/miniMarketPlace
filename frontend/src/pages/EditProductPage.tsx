@@ -11,6 +11,7 @@ import {
   ImageIcon,
   SaveIcon,
   TypeIcon,
+  UserSearch,
 } from "lucide-react";
 
 function EditProductPage() {
@@ -39,6 +40,7 @@ function EditProductPage() {
     title: product.title,
     description: product.description,
     imageUrl: product.imageUrl,
+    userPhone: product.userPhone,
   });
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -139,7 +141,18 @@ function EditProductPage() {
                 />
               </div>
             </div>
-
+            <label className="input input-bordered flex items-center gap-2 bg-base-200">
+              <UserSearch className="size-4 text-base-content/50" />
+              <input
+                type="text"
+                placeholder="Your Contact"
+                className="grow"
+                value={formData.userPhone}
+                onChange={(e) =>
+                  setFormData({ ...formData, userPhone: e.target.value })
+                }
+              />
+            </label>
             {updateProductMutation.isError && (
               <div role="alert" className="alert alert-error alert-sm">
                 <span>Failed to update. Try again.</span>
