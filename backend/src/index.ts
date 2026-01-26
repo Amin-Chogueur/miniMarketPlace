@@ -6,7 +6,14 @@ import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import commentRouter from "./routes/commentRoute.js";
 const app = express();
-app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true }));
+app.use(
+  cors({
+    origin: ENV.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());

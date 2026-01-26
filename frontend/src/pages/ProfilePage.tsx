@@ -11,14 +11,18 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteProduct, getMyProducts } from "../lib/api";
 import type { ProductType } from "../types/productType";
+import { useAuth } from "@clerk/clerk-react";
 
 const ProfilePage = () => {
   const queryClient = useQueryClient();
-
+  const { getToken } = useAuth();
   const navigate = useNavigate();
   const { data: products, isLoading } = useQuery<ProductType[]>({
     queryKey: ["myProducts"],
-    queryFn: getMyProducts,
+    queryFn: async () => {
+      const token = await getToken();
+      return getMyProducts(token as string);
+    },
     staleTime: 1000 * 60,
   });
   const deleteProductMutation = useMutation({

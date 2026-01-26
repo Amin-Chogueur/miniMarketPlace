@@ -22,9 +22,13 @@ export const getProductById = async (id: string) => {
   return data;
 };
 
-export const getMyProducts = async () => {
-  const { data } = await api.get("/products/myProducts");
-  console.log("data", data);
+// lib/api.ts
+export const getMyProducts = async (token: string) => {
+  const { data } = await api.get("/products/myProducts", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return data;
 };
 
