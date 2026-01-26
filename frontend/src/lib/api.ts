@@ -24,6 +24,7 @@ export const getProductById = async (id: string) => {
 
 export const getMyProducts = async () => {
   const { data } = await api.get("/products/myProducts");
+  console.log("data", data);
   return data;
 };
 

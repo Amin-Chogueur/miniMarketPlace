@@ -14,6 +14,7 @@ app.use(clerkMiddleware());
 app.get("/", (req, res) => {
   res.json({
     message: "welcome to MiniMarketPlace Api,Developed By Amin Chogueur",
+    headers: req.headers,
     endpoint: {
       users: "/api/users",
       products: "/api/products",
