@@ -17,7 +17,9 @@ export const getAllProducts = async (req: Request, res: Response) => {
 // Get products by current user (protected)
 export const getMyProducts = async (req: Request, res: Response) => {
   try {
+    console.log("Headers:", req.headers);
     const { userId } = getAuth(req);
+    console.log("userId:", userId); // make sure userId exists
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const products = await queries.getProductsByUserId(userId);
